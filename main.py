@@ -1,28 +1,38 @@
 # tu bedzie gra
 import pygame
 
-class Object:
+class Object(pygame.sprite.Sprite):
     def __init__(self,x,y,size):
+        pygame.sprite.Sprite.__init__(self)
         self.pos_x = x
         self.pos_y = y
         self.size = size
-        self.model = pygame.rect.Rect(x,y,size[0],size[1])
-        Game.Objects.append(self)
+        self.image = pygame.image.load("Player.png")
+        self.image = pygame.transform.scale(self.image, size)
+        self.rect = self.image.get_rect()
+        Game.Objects.add(self)
     def update(self): # updateowanie pozycji modelu zeby byla taka sama jak pozycja obiektu
-        self.model.x = self.pos_x
-        self.model.y = self.pos_y
-        self.model.size = self.size
-    def render(self):
-        self.update()
-        pygame.draw.rect(Game.screen,(0,0,0), self.model) #wyswietlanie obiektu na ekranie
+        self.rect.x = self.pos_x
+        self.rect.y = self.pos_y
 
 class Game:
-    Objects = []
+    Objects = pygame.sprite.Group()
     screen = None
     @staticmethod
     def newFrame():
+        Input.playerInput()
         for object in Game.Objects:
-            object.render()
+            object.update()
+        Game.Objects.draw(Game.screen)
+
+class Input:
+    MoveDirection = (0,0)
+    @staticmethod
+    def playerInput():
+
+        x = int(pygame.key.get_pressed()[pygame.K_d])-int(pygame.key.get_pressed()[pygame.K_a])
+        y = pygame.key.get_pressed()[pygame.K_s]-pygame.key.get_pressed()[pygame.K_w]
+        Input.MoveDirection = (x,y)
 
 
 if __name__ == "__main__":
