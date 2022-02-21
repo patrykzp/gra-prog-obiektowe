@@ -48,6 +48,8 @@ if __name__ == "__main__":
     Game.screen = pygame.display.set_mode(size)
     pygame.display.set_caption("gra")
     gameOn = True
+    background = Object(-700,-500,(5000,5080),Game)
+    background.setImage(pygame.image.load("trawa.png"))
     npc.NPC(random.randint(1,700),random.randint(1,500),5,5,(100,50),Game)
     plr = player.Player(25,25,5,5,(50,50),Game)
     clock = pygame.time.Clock()
