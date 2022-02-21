@@ -1,5 +1,4 @@
 import threading
-
 import pygame
 import random
 import player
@@ -8,6 +7,8 @@ class NPC(player.Character):
    def __init__(self,pos_x, pos_y, facing, HP, size,game):
        super().__init__(pos_x, pos_y, facing, HP, size,game)
        self.setImage(pygame.image.load("krowa.png"))
+
+
    def state(self):
        pass
 

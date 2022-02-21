@@ -2,7 +2,7 @@
 import pygame
 import npc
 import player
-
+import random
 
 class Object(pygame.sprite.Sprite):
     def __init__(self,x,y,size,game):
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     Game.screen = pygame.display.set_mode(size)
     pygame.display.set_caption("gra")
     gameOn = True
-    npc.NPC(50,50,5,5,(100,50),Game)
+    npc.NPC(random.randint(1,700),random.randint(1,500),5,5,(100,50),Game)
     player.Player(25,25,5,5,(50,50),Game)
     clock = pygame.time.Clock()
     Game.input = Input
