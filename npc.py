@@ -14,7 +14,7 @@ class NPC(player.Character):
        pass
 
    def update(self):
-       if self.timer >= 60:
+       if self.timer >= 120:
            self.direction = (random.randint(-1, 1),random.randint(-1, 1))
            self.timer = 0
        self.pos_x += self.direction[0]*0.5

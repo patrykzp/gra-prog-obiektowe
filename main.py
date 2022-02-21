@@ -44,18 +44,19 @@ class Input:
 
 if __name__ == "__main__":
     pygame.init()
-    size = (700, 500)
+    size = (1200, 750)
     Game.screen = pygame.display.set_mode(size)
     pygame.display.set_caption("gra")
     gameOn = True
-    background = Object(-700,-500,(5000,5080),Game)
+    background = Object(-700,-500,(640*15,1024*15),Game)
     background.setImage(pygame.image.load("trawa.png"))
-    npc.NPC(random.randint(1,700),random.randint(1,500),5,5,(100,50),Game)
+    for i in range(10):
+        npc.NPC(random.randint(-1000,1000),random.randint(-1000,1000),5,5,(100,50),Game)
     plr = player.Player(25,25,5,5,(50,50),Game)
     clock = pygame.time.Clock()
     Game.input = Input
     while gameOn:
-        Game.camera = (plr.pos_x-350, plr.pos_y-250)
+        Game.camera = (plr.pos_x-size[0]/2, plr.pos_y-size[1]/2)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # Wyjscie z gry
                 gameOn = False
