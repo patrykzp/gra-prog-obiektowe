@@ -9,5 +9,5 @@ class Character(Object):
         self.size = size
 
 class Player(Character):
-    def __init__(self,pos_x, pos_y, facing, HP, size):
-        super().__init__(pos_x, pos_y, facing, HP, size)
+    def __init__(self,pos_x, pos_y, facing, HP, size,game):
+        super().__init__(pos_x, pos_y, facing, HP, size,game)
