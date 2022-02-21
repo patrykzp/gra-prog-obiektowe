@@ -7,10 +7,12 @@ class Object(pygame.sprite.Sprite):
         self.pos_x = x
         self.pos_y = y
         self.size = size
-        self.image = pygame.image.load("Player.png")
-        self.image = pygame.transform.scale(self.image, size)
         self.rect = self.image.get_rect()
+        self.setImage(pygame.image.load("Player.png"))
         Game.Objects.add(self)
+    def setImage(self,image):
+        self.image = image
+        self.image = pygame.transform.scale(self.image, size)
     def update(self): # updateowanie pozycji modelu zeby byla taka sama jak pozycja obiektu
         self.rect.x = self.pos_x
         self.rect.y = self.pos_y
