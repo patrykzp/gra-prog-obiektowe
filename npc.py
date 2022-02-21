@@ -16,7 +16,6 @@ class NPC(player.Character):
        super().update()
        self.pos_x += random.randint(-2, 2)*2
        self.pos_y += random.randint(-2, 2)*2
-       print("a")
 
 
    def rest(self):
