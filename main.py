@@ -1,5 +1,6 @@
 # tu bedzie gra
 import pygame
+import npc
 
 class Object(pygame.sprite.Sprite):
     def __init__(self,x,y,size):
@@ -7,12 +8,12 @@ class Object(pygame.sprite.Sprite):
         self.pos_x = x
         self.pos_y = y
         self.size = size
-        self.rect = self.image.get_rect()
         self.setImage(pygame.image.load("Player.png"))
         Game.Objects.add(self)
     def setImage(self,image):
         self.image = image
-        self.image = pygame.transform.scale(self.image, size)
+        self.image = pygame.transform.scale(self.image, self.size)
+        self.rect = self.image.get_rect()
     def update(self): # updateowanie pozycji modelu zeby byla taka sama jak pozycja obiektu
         self.rect.x = self.pos_x
         self.rect.y = self.pos_y
@@ -43,10 +44,10 @@ if __name__ == "__main__":
     Game.screen = pygame.display.set_mode(size)
     pygame.display.set_caption("gra")
     gameOn = True
-
+    npc.NPC(10,10,5,5,(50,50))
     clock = pygame.time.Clock()
-    obj1 = Object(10, 10, (250, 250))
-    obj2 = Object(300, 100, (50, 50))
+    # obj1 = Object(10, 10, (250, 250))
+    # obj2 = Object(300, 100, (50, 50))
     while gameOn:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # Wyjscie z gry
