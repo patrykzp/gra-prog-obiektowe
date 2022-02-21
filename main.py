@@ -16,15 +16,14 @@ class Object(pygame.sprite.Sprite):
     def setImage(self,image):
         self.image = image
         self.image = pygame.transform.scale(self.image, self.size)
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center=(self.pos_x,self.pos_y))
     def update(self): # updateowanie pozycji modelu zeby byla taka sama jak pozycja obiektu
-        self.rect.x = self.pos_x-self.game.camera[0]
-        self.rect.y = self.pos_y-self.game.camera[1]
+        self.rect.center = (self.pos_x-self.game.camera[0],self.pos_y-self.game.camera[1])
 class Game:
     input = None
     Objects = pygame.sprite.Group()
-    screen = None
     camera=(0,0)
+    screen = None
     @staticmethod
     def newFrame():
         Input.playerInput()
