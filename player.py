@@ -11,7 +11,7 @@ class Character(Object):
 class Player(Character):
     def __init__(self,pos_x, pos_y, facing, HP, size, game):
         super().__init__(pos_x, pos_y, facing, HP, size, game)
-        self.speed = 2.5
+        self.speed = 3.5
     def update(self):
         x, y = pygame.mouse.get_pos()
         self.rotation = self.getLookAngle(x, y) + 90

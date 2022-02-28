@@ -13,8 +13,11 @@ class NPC(player.Character):
 
    def update(self):
        if self.timer >= 120:
-           self.direction = (random.randint(-1, 1),random.randint(-1, 1))
-           self.rotation = self.getLookAngle(self.rect.centerx+self.direction[0],self.rect.centery+self.direction[1])+180
+           if random.randint(0, 1) == 1:
+               self.direction = (random.randint(-1, 1),random.randint(-1, 1))
+               self.rotation = self.getLookAngle(self.rect.centerx+self.direction[0],self.rect.centery+self.direction[1])+180
+           else:
+               self.direction = (0,0)
            self.timer = 0
        self.pos_x += self.direction[0]*1
        self.pos_y += self.direction[1]*1
