@@ -3,8 +3,8 @@ import random
 import player
 
 class NPC(player.Character):
-   def __init__(self,pos_x, pos_y, facing, HP, size,game):
-       super().__init__(pos_x, pos_y, facing, HP, size,game)
+   def __init__(self,pos_x, pos_y, HP, size,game):
+       super().__init__(pos_x, pos_y, HP, size,game)
        self.setImage(pygame.image.load("krowa.png"))
        self.timer = 0
        self.collisionBox = pygame.rect.Rect(0, 0, self.size[0]/2,self.size[1]/2)

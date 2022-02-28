@@ -21,14 +21,16 @@ class Game:
 
 class Input:
     MoveDirection = (0,0)
+    sprinting = True
+    mouseDown = False
     @staticmethod
     def playerInput():
 
         x = int(pygame.key.get_pressed()[pygame.K_d])-int(pygame.key.get_pressed()[pygame.K_a])
         y = pygame.key.get_pressed()[pygame.K_s]-pygame.key.get_pressed()[pygame.K_w]
+
         if (abs(x)==1 and abs(y)==1): x,y = x/1.5,y/1.5
         Input.MoveDirection = (x,y)
-
 
 if __name__ == "__main__":
     pygame.init()
@@ -40,16 +42,19 @@ if __name__ == "__main__":
     background = Object(-700,-500,(640*15,640*15),Game)
     background.setImage(pygame.image.load("TrawaBg.jpg"))
     for i in range(100):
-        npc.NPC(random.randint(-2500,2500),random.randint(-2500,2500),5,5,(150,75),Game)
+        npc.NPC(random.randint(-2500,2500),random.randint(-2500,2500),50,(150,75),Game)
     for i in range(100):
         obstacles.Obstacle(random.randint(-2500, 2500), random.randint(-2500, 2500), (150, 150), Game)
 
-    plr = player.Player(25,25,5,5,(90,90),Game)
+    plr = player.Player(25,25,(90,90),Game)
     clock = pygame.time.Clock()
     Game.input = Input
     while gameOn:
         Game.camera = (plr.pos_x-size[0]/2, plr.pos_y-size[1]/2)
+        Input.mouseDown = False
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                Input.mouseDown = True
             if event.type == pygame.QUIT:  # Wyjscie z gry
                 gameOn = False
         Game.screen.fill((75,190,70))
