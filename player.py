@@ -1,5 +1,5 @@
 import pygame
-from main import Object
+from object import Object
 
 class Character(Object):
     def __init__(self, pos_x, pos_y, facing, HP, size,game):
