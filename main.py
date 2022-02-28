@@ -41,10 +41,12 @@ if __name__ == "__main__":
 
     background = Object(-700,-500,(640*15,640*15),Game)
     background.setImage(pygame.image.load("TrawaBg.jpg"))
-    for i in range(100):
+    for i in range(80):
         npc.NPC(random.randint(-2500,2500),random.randint(-2500,2500),50,(150,75),Game)
     for i in range(100):
-        obstacles.Obstacle(random.randint(-2500, 2500), random.randint(-2500, 2500), (150, 150), Game)
+        obstacles.Obstacle(random.randint(-5000, 5000), random.randint(-5000, 5000), (150, 150), Game)
+    for i in range(50):
+        obstacles.InteractiveObstacle(random.randint(-3000, 3000), random.randint(-3000, 3000), (150, 150), Game, HP=100)
 
     plr = player.Player(25,25,(90,90),Game)
     clock = pygame.time.Clock()
