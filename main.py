@@ -26,6 +26,7 @@ class Input:
 
         x = int(pygame.key.get_pressed()[pygame.K_d])-int(pygame.key.get_pressed()[pygame.K_a])
         y = pygame.key.get_pressed()[pygame.K_s]-pygame.key.get_pressed()[pygame.K_w]
+        if (abs(x)==1 and abs(y)==1): x,y = x/1.5,y/1.5
         Input.MoveDirection = (x,y)
 
 
@@ -38,10 +39,10 @@ if __name__ == "__main__":
 
     background = Object(-700,-500,(640*15,640*15),Game)
     background.setImage(pygame.image.load("TrawaBg.jpg"))
-    for i in range(167):
-        npc.NPC(random.randint(-7000,7000),random.randint(-7000,7000),5,5,(150,75),Game)
-    for i in range(400):
-        obstacles.Obstacle(random.randint(-7000, 7000), random.randint(-7000, 7000), (150, 150), Game)
+    for i in range(100):
+        npc.NPC(random.randint(-2500,2500),random.randint(-2500,2500),5,5,(150,75),Game)
+    for i in range(100):
+        obstacles.Obstacle(random.randint(-2500, 2500), random.randint(-2500, 2500), (150, 150), Game)
 
     plr = player.Player(25,25,5,5,(90,90),Game)
     clock = pygame.time.Clock()
