@@ -39,8 +39,8 @@ if __name__ == "__main__":
     pygame.display.set_caption("gra")
     gameOn = True
 
-    background = Object(-700,-500,(640*15,640*15),Game)
-    background.setImage(pygame.image.load("TrawaBg.jpg"))
+    # background = Object(-700,-500,(640*15,640*15),Game)
+    # background.setImage(pygame.image.load("TrawaBg.jpg"))
     for i in range(100):
         npc.NPC(random.randint(-2500,2500),random.randint(-2500,2500),50,(150,75),Game)
     for i in range(100):
