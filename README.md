@@ -1,22 +1,22 @@
-## Gra survival
+# Gra survival
 
 Jest to projekt zrobiony na programowanie obiektowe
 
-# Przed Instalacja
+## Przed Instalacja
 By ten projekt działał potrzebny jest [pygame](https://github.com/pygame/pygame)
 Dla pewności wymagana jest wersja pythona 3.8
 
-# Instalacja
+## Instalacja
 Po instalacji pygame wystarczy zklonować projekt
 `git clone https://github.com/patrykzp/gra-prog-obiektowe/ (lokalizacja)`
 
-# Cel gry
+## Cel gry
 
 Przetrwaj
 
-## Struktura gry
+# Struktura gry
 
-# Klasy
+## Klasy
 
 klasa Game, odpowiedzialna za wyświetlanie wszystkich obiektów i przechowywanie globalnych obiektów
 
