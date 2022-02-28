@@ -3,7 +3,7 @@
 Jest to projekt zrobiony na programowanie obiektowe
 
 ## Przed Instalacja
-By ten projekt działał potrzebny jest [pygame](https://github.com/pygame/pygame)
+By ten projekt działał potrzebny jest [pygame](https://github.com/pygame/pygame)<br>
 Dla pewności wymagana jest wersja pythona 3.8
 
 ## Instalacja
@@ -18,20 +18,20 @@ Przetrwaj
 
 ## Klasy
 
-klasa Game, odpowiedzialna za wyświetlanie wszystkich obiektów i przechowywanie globalnych obiektów
+- klasa Game, odpowiedzialna za wyświetlanie wszystkich obiektów i przechowywanie globalnych obiektów
 
-klasa Input, odpowiedzialna za pobieranie wartości od gracza
+- klasa Input, odpowiedzialna za pobieranie wartości od gracza
 
-klasa Object, podstawowa klasa dla każdego obiektu w grze który ma byc wyświetlany
+- klasa Object, podstawowa klasa dla każdego obiektu w grze który ma byc wyświetlany
 posiada pozycje, rozmiar, rotacje, obrazek, referencje do obiektu Gry oraz metody
 1. `update()` odpowiedzialną za ustawianie pozycji i rotacji, jest ona aktywowana co klatke
 2. `setImage(obrazek pygame)` ustawia sprite obiektu
 3. `getLookAngle(pos_x,pos_y)` zwraca rotacje potrzebna dla obiektu żeby był zwrócony w strone danej pozycji
 
-klasa Character, klasa dziedzicząca od Obiektu której zadaniem jest bycie podstawą dla każdego obiektu który posiada życie
+- klasa Character, klasa dziedzicząca od Obiektu której zadaniem jest bycie podstawą dla każdego obiektu który posiada życie
 
-klasa Player, klasa dziedzicząca od Character, obiektem tej klasy steruje gracz, obsluguje ona poruszanie się oraz zwracanie się w strone myszki
+- klasa Player, klasa dziedzicząca od Character, obiektem tej klasy steruje gracz, obsluguje ona poruszanie się oraz zwracanie się w strone myszki
 
-klasa NPC, klasa dziedzicząca od Character, obiekty tej klasy to przyjazne NPC które chodzą po mapce
+- klasa NPC, klasa dziedzicząca od Character, obiekty tej klasy to przyjazne NPC które chodzą po mapce
 
-klasa Obstacle, klasa dziedzicząca od Obiektu której zadaniem jest bycie podstawą dla każdej przeszkody
+- klasa Obstacle, klasa dziedzicząca od Obiektu której zadaniem jest bycie podstawą dla każdej przeszkody
