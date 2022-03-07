@@ -50,8 +50,7 @@ class InteractiveObstacle4(Obstacle):
         self.setImage(pygame.image.load("apple_tree.png"))
 
     def takeDamage(self, damage):
-        if self.game.player.food < 80:
-            self.game.player.food += 20
+        self.game.player.food = min(self.game.player.food+50,100)
         self.game.player.wood += 1
         self.HP -= damage
         if (self.HP <= 0):
