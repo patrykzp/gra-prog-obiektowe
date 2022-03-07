@@ -19,7 +19,7 @@ class NPC(player.Character):
            if self.run:
                dx, dy = self.getFacingToVector(self.game.player.rect.centerx, self.game.player.rect.centery)
                self.direction = (-dx*4, -dy*4)
-               print(dx,dy)
+               self.run = False
            else:
                if random.randint(0, 1) == 1:
                    self.direction = (random.randint(-1, 1),random.randint(-1, 1))
