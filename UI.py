@@ -1,4 +1,5 @@
 import pygame.font
+import os
 
 from object import Renderable
 
@@ -10,7 +11,7 @@ class UIObject(Renderable):
 class Text(UIObject):
     def __init__(self,pos_x,pos_y,game,text,textColor = None, font=None):
         super().__init__(pos_x,pos_y,(100,100),game)
-        self.font = font or pygame.font.SysFont('Comic Sans MS',30)
+        self.font = font or pygame.font.Font(os.path.abspath("8BITWONDER.TTF"),30)
         self.textColor = textColor or pygame.Color("black")
         self.changeText(text)
     def changeText(self,text):
