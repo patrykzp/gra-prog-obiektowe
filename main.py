@@ -48,20 +48,29 @@ class Game:
     @staticmethod
     def genTerrain():
         for i in range(50):
-            posx,posy = Game.getRandomPos()
+            posx, posy = Game.getRandomPos()
 
-            npc.NPC(posx, posy, 50, (250, 250), Game)
-        for i in range(10):
+            npc.NPC(posx, posy, 75, (300, 150), Game)
+        for i in range(50):
             posx, posy = Game.getRandomPos()
             obstacles.Obstacle(posx, posy, (150, 150), Game)
-        for i in range(30):
+        for i in range(50):
             posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle\
-                (posx, posy, (150, 150), Game,HP=100)
-        for i in range(30):
+            obstacles.InteractiveObstacle \
+                (posx, posy, (150, 150), Game, HP=125)
+        for i in range(50):
             posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle2\
-                (posx, posy, (300, 300), Game,HP=100)
+            obstacles.InteractiveObstacle2 \
+                (posx, posy, (300, 300), Game, HP=100)
+        for i in range(50):
+            posx, posy = Game.getRandomPos()
+            obstacles.InteractiveObstacle3 \
+                (posx, posy, (200, 200), Game, HP=150)
+        for i in range(50):
+            posx, posy = Game.getRandomPos()
+            obstacles.InteractiveObstacle4 \
+                (posx, posy, (220, 220), Game, HP=75)
+
     @staticmethod
     def gameStart():
         # ustawianie tła
