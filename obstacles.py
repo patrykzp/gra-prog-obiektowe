@@ -15,4 +15,18 @@ class InteractiveObstacle(Obstacle):
 
     def takeDamage(self,damage):
         self.game.player.iron+=1
-        pass
+        self.HP -= damage
+        if (self.HP <= 0):
+            self.kill()
+
+class InteractiveObstacle2(Obstacle):
+    def __init__(self,pos_x,pos_y,size,game,HP):
+        super().__init__(pos_x,pos_y,size,game)
+        self.HP = HP
+        self.setImage(pygame.image.load("tree.png"))
+
+    def takeDamage(self, damage):
+        self.game.player.wood += 1
+        self.HP -= damage
+        if (self.HP <= 0):
+            self.kill()
