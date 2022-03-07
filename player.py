@@ -27,10 +27,13 @@ class Character(Object):
         self.HP = HP
         self.speed = 5.5
         self.size = size
+
+    def death(self):
+        self.kill()
     def takeDamage(self, damage):
         self.HP -= damage
         if (self.HP <= 0):
-            self.kill()
+            self.death()
     def _collideMethod(self,collider):
         collidedWith = self.checkCollide(collider)
         if collidedWith:
