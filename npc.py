@@ -40,7 +40,8 @@ class NPC(player.Character):
         super().takeDamage(damage)
 
    def death(self):
-       self.game.player.food += 50
+       self.game.player.food = min(self.game.player.food+50,100)
+       super().death()
 
 
 #    def update(self):
