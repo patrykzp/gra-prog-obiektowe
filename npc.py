@@ -6,12 +6,11 @@ import player
 class NPC(player.Character):
    def __init__(self,pos_x, pos_y, HP, size,game):
        super().__init__(pos_x, pos_y, HP, size,game)
-       self.setImage(pygame.image.load("krowa.png"))
+       self.setImage(pygame.image.load("damian.png"))
        self.timer = 0
        self.collisionBox = pygame.rect.Rect(0, 0, self.size[0]/2,self.size[1]/2)
        self.direction = (0,0)
-   def state(self):
-       pass
+       self.run = False
 
 
    def update(self):
@@ -40,15 +39,10 @@ class NPC(player.Character):
    def takeDamage(self, damage):
         super().takeDamage(damage)
 
-# class NPC(player.Character):
-#    def __init__(self,pos_x, pos_y, HP, size,game, run):
-#        super().__init__(pos_x, pos_y, HP, size,game)
-#        self.setImage(pygame.image.load("krowa.png"))
-#        self.timer = 0
-#        self.collisionBox = pygame.rect.Rect(0, 0, self.size[0]/2,self.size[1]/2)
-#        self.direction = (0,0)
-#        self.run = False
-#
+   def death(self):
+       self.game.player.food += 50
+
+
 #    def update(self):
 #        if  self.run:
 #            if  self.timer >= 5*60:
