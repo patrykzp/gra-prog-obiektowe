@@ -1,9 +1,23 @@
 import math
-
+from dataclasses import dataclass
+import UI
 import pygame
-
-import npc
 from object import Object
+
+
+@dataclass
+class UiSet:
+    foodText : UI.Text
+    hpText : UI.Text
+    ironText : UI.Text
+    woodText : UI.Text
+    stoneText : UI.Text
+    def update(self,player):
+        self.foodText.changeText("głód: {:d}/100".format((int(player.food))))
+        self.hpText.changeText("życie: {:d}/100".format((int(player.HP))))
+        self.ironText.changeText("żelazo: {:d}".format(player.iron))
+        self.woodText.changeText("drewno: {:d}".format(player.wood))
+        self.stoneText.changeText("kamień: {:d}".format(player.stone))
 
 class Character(Object):
     def __init__(self, pos_x, pos_y, HP, size,game):
@@ -11,7 +25,7 @@ class Character(Object):
         self.hasCollision = True
         self._pushForce = 0.5
         self.HP = HP
-        self.speed = 3.5
+        self.speed = 5.5
         self.size = size
     def takeDamage(self, damage):
         self.HP -= damage
@@ -28,30 +42,43 @@ class Character(Object):
             self.pos_y -= y2 * collidedWith._pushForce * self.speed
         return collidedWith
 class Player(Character):
-    def __init__(self,pos_x, pos_y, size, game):
+    def __init__(self,pos_x, pos_y, size, game,uiset : UiSet):
         super().__init__(pos_x, pos_y,100, size, game)
         self.cooldown = 0
+        self._uiset = uiset
 
+        self.wood = 0
+        self.stone = 0
+        self.iron = 0
+
+        self.food = 100
         self.__extrarot = 0
+        self.setImage(pygame.image.load("Player.png"))
+
     def mouseClick(self):
         x, y = pygame.mouse.get_pos()
 
         collider = pygame.rect.Rect(self.rect.centerx, self.rect.centery, 50,50)
-        dx, dy = x - self.rect.centerx, y - self.rect.centery
-        dist = math.hypot(dx, dy)
+        dx, dy = self.getFacingToVector(x,y)
 
-        dx, dy = dx / dist, dy / dist  # Normalize
-
-        print(dx,dy)
-        collider.center = (self.rect.centerx+dx*60,self.rect.centery+dy*60)
+        collider.center = (self.rect.centerx+dx*70,self.rect.centery+dy*70)
         pygame.draw.rect(self.game.screen, (155, 0, 0), collider, 5)
         obj = self._collideMethod(collider)
-        if (isinstance(obj,npc.NPC)):
+        if (hasattr(obj,"takeDamage")):
             obj.takeDamage(25)
+            dx, dy = obj.getFacingToVector(self.rect.centerx, self.rect.centery)
+            obj._offset = (-dx * 10, -dy * 10)
 
 
     def update(self):
+        # rotacja i klikanie
         self.cooldown -= 1
+        self.food = max(self.food-0.01,0)
+        if self.food <= 0:
+            self.HP -= 0.01
+
+        self._uiset.update(self)
+
         self.__extrarot = max(self.__extrarot-2, 0)
         if self.cooldown <= 0 and self.game.input.mouseDown:
             self.__extrarot = 25
@@ -60,16 +87,31 @@ class Player(Character):
         x, y = pygame.mouse.get_pos()
         self.rotation = self.getLookAngle(x, y) + 90 + self.__extrarot
 
+        # movement
+
         x, y = self.game.input.MoveDirection[0]*self.speed, self.game.input.MoveDirection[1]*self.speed
+
+        bounds = self.game.worldBounds
 
         self.pos_x += x
         self.pos_y += y
+
+        # zeby gracz nie wychodzil poza mape
+        if bounds['x'][0] > self.pos_x:
+            self.pos_x += 1*self.speed
+        if bounds['x'][1] < self.pos_x-1200:
+            self.pos_x -= 1*self.speed
+        if bounds['y'][0] > self.pos_y:
+            self.pos_y += 1*self.speed
+        if bounds['y'][1] < self.pos_y-750:
+            self.pos_y -= 1*self.speed
+
+        # kolizje
 
         collider = pygame.rect.Rect(self.rect.centerx, self.rect.centery, self.size[0]/1.5 + abs(x),
                                     self.size[1]/1.5 + abs(y))
         collider.center = (self.rect.centerx + self.game.input.MoveDirection[0]*4,
                            self.rect.centery + self.game.input.MoveDirection[1]*4)
-        # pygame.draw.rect(self.game.screen,(155,0,0),collider,5)
+        pygame.draw.rect(self.game.screen,(155,0,0),collider,5)
         self._collideMethod(collider)
-
         super().update()

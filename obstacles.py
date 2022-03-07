@@ -13,5 +13,6 @@ class InteractiveObstacle(Obstacle):
         self.HP = HP
         self.setImage(pygame.image.load("IronOre.png"))
 
-    def takeDMG(self):
+    def takeDamage(self,damage):
+        self.game.player.iron+=1
         pass

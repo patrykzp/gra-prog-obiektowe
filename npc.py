@@ -1,5 +1,6 @@
 import pygame
 import random
+
 import player
 
 class NPC(player.Character):
@@ -12,7 +13,9 @@ class NPC(player.Character):
    def state(self):
        pass
 
+
    def update(self):
+
        if self.timer >= 120:
            if random.randint(0, 1) == 1:
                self.direction = (random.randint(-1, 1),random.randint(-1, 1))
@@ -20,9 +23,10 @@ class NPC(player.Character):
            else:
                self.direction = (0,0)
            self.timer = 0
+
+
        self.pos_x += self.direction[0]*1
        self.pos_y += self.direction[1]*1
-
        collider = pygame.rect.Rect(self.rect.centerx, self.rect.centery, self.size[0] / 1.5 + abs(self.direction[0]),
                                    self.size[0] / 1.5 + abs(self.direction[1]))
        collider.center = (self.rect.centerx + self.direction[0] * 4,
@@ -35,7 +39,6 @@ class NPC(player.Character):
 
    def takeDamage(self, damage):
         super().takeDamage(damage)
-        self.damage = damage
 
 # class NPC(player.Character):
 #    def __init__(self,pos_x, pos_y, HP, size,game, run):
