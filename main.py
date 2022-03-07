@@ -55,7 +55,10 @@ class Game:
             posx, posy = Game.getRandomPos()
             obstacles.InteractiveObstacle2\
                 (posx, posy, (300, 300), Game,HP=100)
-
+        for i in range(50):
+            posx, posy = Game.getRandomPos()
+            obstacles.InteractiveObstacle3\
+                (posx, posy, (200, 200), Game, HP=100)
 
 class Input:
     MoveDirection = (0,0)

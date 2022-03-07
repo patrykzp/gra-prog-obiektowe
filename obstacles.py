@@ -30,3 +30,15 @@ class InteractiveObstacle2(Obstacle):
         self.HP -= damage
         if (self.HP <= 0):
             self.kill()
+
+class InteractiveObstacle3(Obstacle):
+    def __init__(self,pos_x,pos_y,size,game,HP):
+        super().__init__(pos_x,pos_y,size,game)
+        self.HP = HP
+        self.setImage(pygame.image.load("THEROCK.png"))
+
+    def takeDamage(self, damage):
+        self.game.player.stone += 1
+        self.HP -= damage
+        if (self.HP <= 0):
+            self.kill()
