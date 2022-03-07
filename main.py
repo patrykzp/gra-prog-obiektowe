@@ -43,7 +43,7 @@ class Game:
         for i in range(50):
             posx,posy = Game.getRandomPos()
 
-            npc.NPC(posx, posy, 50, (150, 75), Game)
+            npc.NPC(posx, posy, 75, (300, 150), Game)
         for i in range(50):
             posx, posy = Game.getRandomPos()
             obstacles.Obstacle(posx, posy, (150, 150), Game)

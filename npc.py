@@ -16,20 +16,25 @@ class NPC(player.Character):
    def update(self):
 
        if self.timer >= 120:
-           if random.randint(0, 1) == 1:
-               self.direction = (random.randint(-1, 1),random.randint(-1, 1))
-               self.rotation = self.getLookAngle(self.rect.centerx+self.direction[0],self.rect.centery+self.direction[1])+180
+           if self.run:
+               dx, dy = self.getFacingToVector(self.game.player.rect.centerx, self.game.player.rect.centery)
+               self.direction = (-dx*4, -dy*4)
+               print(dx,dy)
            else:
-               self.direction = (0,0)
+               if random.randint(0, 1) == 1:
+                   self.direction = (random.randint(-1, 1),random.randint(-1, 1))
+                   self.rotation = self.getLookAngle(self.rect.centerx+self.direction[0],self.rect.centery+self.direction[1])+180
+               else:
+                   self.direction = (0,0)
            self.timer = 0
 
 
        self.pos_x += self.direction[0]*1
        self.pos_y += self.direction[1]*1
        collider = pygame.rect.Rect(self.rect.centerx, self.rect.centery, self.size[0] / 1.5 + abs(self.direction[0]),
-                                   self.size[0] / 1.5 + abs(self.direction[1]))
+                               self.size[0] / 1.5 + abs(self.direction[1]))
        collider.center = (self.rect.centerx + self.direction[0] * 4,
-                          self.rect.centery + self.direction[1] * 4)
+                      self.rect.centery + self.direction[1] * 4)
        # pygame.draw.rect(self.game.screen, (155, 0, 0), collider, 5)
        self._collideMethod(collider)
 
@@ -38,6 +43,8 @@ class NPC(player.Character):
 
    def takeDamage(self, damage):
         super().takeDamage(damage)
+        self.run = True
+        self.timer = 2000
 
    def death(self):
        self.game.player.food = min(self.game.player.food+50,100)
