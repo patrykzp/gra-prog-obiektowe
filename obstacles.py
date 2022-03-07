@@ -7,7 +7,7 @@ class Obstacle(Object):
        self.hasCollision = True
        self.setImage(pygame.image.load("Rock_Pile.png"))
 
-class InteractiveObstacle(Obstacle):
+class IronOre(Obstacle):
     def __init__(self,pos_x,pos_y,size,game,HP):
         super().__init__(pos_x,pos_y,size,game)
         self.HP = HP
@@ -19,7 +19,7 @@ class InteractiveObstacle(Obstacle):
         if (self.HP <= 0):
             self.kill()
 
-class InteractiveObstacle2(Obstacle):
+class Tree(Obstacle):
     def __init__(self,pos_x,pos_y,size,game,HP):
         super().__init__(pos_x,pos_y,size,game)
         self.HP = HP
@@ -31,19 +31,23 @@ class InteractiveObstacle2(Obstacle):
         if (self.HP <= 0):
             self.kill()
 
-class InteractiveObstacle3(Obstacle):
+class MineableRock(Obstacle):
     def __init__(self,pos_x,pos_y,size,game,HP):
         super().__init__(pos_x,pos_y,size,game)
         self.HP = HP
-        self.setImage(pygame.image.load("THEROCK.png"))
+        self.images = [pygame.image.load("Rock_Pile.png"),pygame.image.load("Rock_Pile2.png")]
 
+        self.setImage(self.images[0])
     def takeDamage(self, damage):
         self.game.player.stone += 2
         self.HP -= damage
+
+        if (self.HP <= 50):
+            self.setImage(self.images[1])
         if (self.HP <= 0):
             self.kill()
 
-class InteractiveObstacle4(Obstacle):
+class AppleTree(Obstacle):
     def __init__(self,pos_x,pos_y,size,game,HP):
         super().__init__(pos_x,pos_y,size,game)
         self.HP = HP

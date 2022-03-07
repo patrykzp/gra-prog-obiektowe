@@ -50,26 +50,23 @@ class Game:
         for i in range(50):
             posx, posy = Game.getRandomPos()
 
-            npc.NPC(posx, posy, 75, (300, 150), Game)
+            npc.NPC(posx, posy, 75, (100, 100), Game)
         for i in range(50):
             posx, posy = Game.getRandomPos()
-            obstacles.Obstacle(posx, posy, (150, 150), Game)
-        for i in range(50):
-            posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle \
+            obstacles.IronOre \
                 (posx, posy, (150, 150), Game, HP=125)
         for i in range(50):
             posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle2 \
-                (posx, posy, (300, 300), Game, HP=100)
-        for i in range(50):
+            obstacles.Tree \
+                (posx, posy, (200, 200), Game, HP=100)
+        for i in range(75):
             posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle3 \
+            obstacles.MineableRock \
                 (posx, posy, (200, 200), Game, HP=150)
         for i in range(50):
             posx, posy = Game.getRandomPos()
-            obstacles.InteractiveObstacle4 \
-                (posx, posy, (220, 220), Game, HP=75)
+            obstacles.AppleTree \
+                (posx, posy, (175, 175), Game, HP=75)
 
     @staticmethod
     def gameStart():

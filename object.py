@@ -9,6 +9,7 @@ class Renderable(pygame.sprite.Sprite):
         self.pos_x = x
         self.pos_y = y
         self.game = game
+        self.rect = None
         self.size = size
         pygame.sprite.Sprite.__init__(self)
         sf = pygame.surface.Surface(size)
@@ -19,7 +20,10 @@ class Renderable(pygame.sprite.Sprite):
         self._ogimg = image
         self._ogimg = pygame.transform.scale(self._ogimg, self.size)
         self.image = self._ogimg
+
+        oldrect = self.rect
         self.rect = self.image.get_rect()
+        self.rect.center = (oldrect and oldrect.center) or (0,0)
     def update(self):
         self.rect.center = (self.pos_x,self.pos_y)
 
