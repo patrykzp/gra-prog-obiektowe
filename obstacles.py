@@ -26,7 +26,7 @@ class InteractiveObstacle2(Obstacle):
         self.setImage(pygame.image.load("tree.png"))
 
     def takeDamage(self, damage):
-        self.game.player.wood += 1
+        self.game.player.wood += 2
         self.HP -= damage
         if (self.HP <= 0):
             self.kill()
@@ -38,7 +38,21 @@ class InteractiveObstacle3(Obstacle):
         self.setImage(pygame.image.load("THEROCK.png"))
 
     def takeDamage(self, damage):
-        self.game.player.stone += 1
+        self.game.player.stone += 2
+        self.HP -= damage
+        if (self.HP <= 0):
+            self.kill()
+
+class InteractiveObstacle4(Obstacle):
+    def __init__(self,pos_x,pos_y,size,game,HP):
+        super().__init__(pos_x,pos_y,size,game)
+        self.HP = HP
+        self.setImage(pygame.image.load("apple_tree.png"))
+
+    def takeDamage(self, damage):
+        if self.game.player.food < 80:
+            self.game.player.food += 20
+        self.game.player.wood += 1
         self.HP -= damage
         if (self.HP <= 0):
             self.kill()
