@@ -81,19 +81,14 @@ class Game:
 
         # tworzenie gracza i jego elementów UI
 
-        UI.Button(100, 500, (100, 100), Game)
-
-        def onClick():
-            plr.speed += 1
-
-        UI.Button(100, 620, (100, 100), Game).onClick = onClick
-
         plr = player.Player(0, 0, (90, 90), Game, player.UiSet(
-            foodText=UI.Text(100, 50, Game, "Siema", textColor=pygame.Color("yellow")),
-            hpText=UI.Text(100, 100, Game, "e", textColor=pygame.Color("red")),
-            ironText=UI.Text(100, 150, Game, "e", textColor=pygame.Color("black")),
-            stoneText=UI.Text(100, 200, Game, "e", textColor=pygame.Color("gray")),
-            woodText=UI.Text(100, 250, Game, "e", textColor=pygame.Color("brown")),
+            foodBar=UI.Bar(100,50,(150,35),Game,(255, 178, 102)),
+            healthBar=UI.Bar(100, 100, (150, 35), Game, (255, 51, 51)),
+            foodText=UI.Text(100, 50, Game, "glod"),
+            hpText=UI.Text(100, 100, Game, "zycie"),
+            ironText=UI.Text(100, 150, Game, "e"),
+            stoneText=UI.Text(100, 200, Game, "e"),
+            woodText=UI.Text(100, 250, Game, "e"),
         ))
 
         Game.player = plr
@@ -119,24 +114,20 @@ if __name__ == "__main__":
     pygame.display.set_caption("gra survival")
     gameOn = True
 
-
-    # Game.gameStart()
-
     clock = pygame.time.Clock()
     Game.input = Input
     mainmenu.Menu(Game)
+
     # petla gry
 
     while gameOn:
-        # ustawianie pozycji kamery i limiotwanie jej
-
         Input.mouseDown = False
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
                 Input.mouseDown = True
             if event.type == pygame.QUIT:  # Wyjscie z gry
                 gameOn = False
-        Game.screen.fill((75,190,70))
+        Game.screen.fill((50,50,50))
         Game.newFrame()
         pygame.display.flip()
 

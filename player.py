@@ -2,22 +2,26 @@ import math
 from dataclasses import dataclass
 import UI
 import pygame
+
+import mainmenu
 from object import Object
 
 
 @dataclass
 class UiSet:
+    foodBar : UI.Bar
+    healthBar : UI.Bar
     foodText : UI.Text
     hpText : UI.Text
     ironText : UI.Text
     woodText : UI.Text
     stoneText : UI.Text
     def update(self,player):
-        self.foodText.changeText("głód: {:d}/100".format((int(player.food))))
-        self.hpText.changeText("życie: {:d}/100".format((int(player.HP))))
-        self.ironText.changeText("żelazo: {:d}".format(player.iron))
+        self.ironText.changeText("zelazo: {:d}".format(player.iron))
         self.woodText.changeText("drewno: {:d}".format(player.wood))
-        self.stoneText.changeText("kamień: {:d}".format(player.stone))
+        self.stoneText.changeText("kamien: {:d}".format(player.stone))
+        self.foodBar.progress = player.food/100
+        self.healthBar.progress = player.HP / 100
 
 class Character(Object):
     def __init__(self, pos_x, pos_y, HP, size,game):
@@ -76,10 +80,12 @@ class Player(Character):
     def update(self):
         # rotacja i klikanie
         self.cooldown -= 1
-        self.food = max(self.food-0.01,0)
+        self.food = max(self.food-0.02,0)
         if self.food <= 0:
             self.HP -= 0.01
-
+        if self.HP <= 0:
+            mainmenu.DeathScreen(self.game)
+            return
         self._uiset.update(self)
 
         self.__extrarot = max(self.__extrarot-2, 0)
