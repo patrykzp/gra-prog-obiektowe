@@ -3,7 +3,7 @@
 Jest to projekt zrobiony na programowanie obiektowe
 
 ## Przed Instalacja
-By ten projekt działał potrzebny jest [pygame](https://github.com/pygame/pygame)<br>
+By ten projekt działał potrzebny jest [python](https://www.python.org/)<br>
 Dla pewności wymagana jest wersja pythona 3.8
 
 ## Instalacja
