@@ -74,7 +74,7 @@ class Player(Character):
         if (hasattr(obj,"takeDamage")):
             obj.takeDamage(25)
             dx, dy = obj.getFacingToVector(self.rect.centerx, self.rect.centery)
-            obj._offset = (-dx * 10, -dy * 10)
+            obj._offset = (-dx * 15, -dy * 15)
 
 
     def update(self):

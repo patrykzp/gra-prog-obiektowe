@@ -52,6 +52,7 @@ class Object(Renderable):
     def getFacingToVector(self,x,y):
         dx, dy = x - self.rect.centerx, y - self.rect.centery
         dist = math.hypot(dx, dy)
+        if (dist==0): return 0,0
         dx, dy = dx / dist, dy / dist
         return dx, dy
     def getLookAngle(self,pos_x,pos_y):

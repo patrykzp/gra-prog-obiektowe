@@ -50,3 +50,31 @@ class NPC(player.Character):
        self.game.player.food = min(self.game.player.food+50,100)
        super().death()
 
+class aggroNPC(NPC):
+
+    def __init__(self,pos_x,pos_y,HP,size,game):
+        super().__init__(pos_x,pos_y,HP,size,game)
+        self.setImage(pygame.image.load("THEROCK.png"))
+
+    def update(self):
+        plr = self.game.player
+        vec = pygame.math.Vector2
+        dist = (vec(self.pos_x,self.pos_y)-vec(plr.pos_x,plr.pos_y)).length()
+        super(player.Character,self).update()
+        if (dist<= 50):
+            self.game.player.HP -= 0.5
+        elif (dist <= 500):
+            dx, dy = self.getFacingToVector(self.game.player.rect.centerx, self.game.player.rect.centery)
+            self.direction = (dx * 3, dy * 3)
+        else:
+            self.direction = (0,0)
+            return
+        if self.direction != (0, 0):
+            self.rotation = self.getLookAngle(self.rect.centerx + self.direction[0],
+                                              self.rect.centery + self.direction[1]) + 90
+        self.pos_x += self.direction[0] * 1
+        self.pos_y += self.direction[1] * 1
+
+    def death(self):
+        self.game.player.HP = min(self.game.player.HP+15,100)
+        super().death()

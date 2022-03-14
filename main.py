@@ -69,6 +69,9 @@ class Game:
             obstacles.AppleTree \
                 (posx, posy, (175, 175), Game, HP=75)
 
+        for i in range(25):
+            posx, posy = Game.getRandomPos()
+            npc.aggroNPC(posx, posy, 150, (100, 100), Game)
     @staticmethod
     def gameStart():
         # ustawianie tła
