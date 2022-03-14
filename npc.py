@@ -50,12 +50,3 @@ class NPC(player.Character):
        self.game.player.food = min(self.game.player.food+50,100)
        super().death()
 
-
-#    def update(self):
-#        if  self.run:
-#            if  self.timer >= 5*60:
-#             self.run = False
-#            else:
-#                self.direction =
-#        else:
-#            if self.timer >= 120
