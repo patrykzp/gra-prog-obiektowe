@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # tu bedzie gra
 import pygame
 import math
