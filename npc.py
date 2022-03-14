@@ -54,14 +54,14 @@ class aggroNPC(NPC):
 
     def __init__(self,pos_x,pos_y,HP,size,game):
         super().__init__(pos_x,pos_y,HP,size,game)
-        self.setImage(pygame.image.load("THEROCK.png"))
+        self.setImage(pygame.image.load("bat.png"))
 
     def update(self):
         plr = self.game.player
         vec = pygame.math.Vector2
         dist = (vec(self.pos_x,self.pos_y)-vec(plr.pos_x,plr.pos_y)).length()
         super(player.Character,self).update()
-        if (dist<= 50):
+        if (dist<=75):
             self.game.player.HP -= 0.5
         elif (dist <= 500):
             dx, dy = self.getFacingToVector(self.game.player.rect.centerx, self.game.player.rect.centery)
@@ -69,12 +69,20 @@ class aggroNPC(NPC):
         else:
             self.direction = (0,0)
             return
+        collider = pygame.rect.Rect(self.rect.centerx, self.rect.centery, self.size[0] / 1.5 + abs(self.direction[0]),
+                                    self.size[0] / 1.5 + abs(self.direction[1]))
+        collider.center = (self.rect.centerx + self.direction[0] * 4,
+                           self.rect.centery + self.direction[1] * 4)
+        self._collideMethod(collider)
+
         if self.direction != (0, 0):
             self.rotation = self.getLookAngle(self.rect.centerx + self.direction[0],
-                                              self.rect.centery + self.direction[1]) + 90
+                                              self.rect.centery + self.direction[1]) - 90
         self.pos_x += self.direction[0] * 1
         self.pos_y += self.direction[1] * 1
-
+    def checkCollide(self,collider):
+        a = super().checkCollide(collider)
+        return (isinstance(a,player.Character) and a) or None
     def death(self):
         self.game.player.HP = min(self.game.player.HP+15,100)
         super().death()
