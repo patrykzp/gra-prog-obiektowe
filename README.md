@@ -10,7 +10,7 @@ Po instalacji pygame wystarczy zklonować projekt
 `git clone https://github.com/patrykzp/gra-prog-obiektowe/ lokalizacja`
 
 Po instalacji pików trzeba wykonać komende `python -m pip install -r requirements.txt` lub `pip install -r requirements.txt` w folderze gry,
-po czym `python main.py` lub `./main.py by włączyć grę
+po czym `python main.py` lub `./main.py` by włączyć grę
 
 ## Cel gry
 
