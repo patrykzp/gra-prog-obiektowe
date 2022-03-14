@@ -3,12 +3,14 @@
 Jest to projekt zrobiony na programowanie obiektowe
 
 ## Przed Instalacja
-By ten projekt działał potrzebny jest [python](https://www.python.org/)<br>
-Dla pewności wymagana jest wersja pythona 3.8
+By ten projekt działał potrzebny jest [Python](https://www.python.org/)<br>
 
 ## Instalacja
 Po instalacji pygame wystarczy zklonować projekt
-`git clone https://github.com/patrykzp/gra-prog-obiektowe/ (lokalizacja)`
+`git clone https://github.com/patrykzp/gra-prog-obiektowe/ lokalizacja`
+
+Po instalacji pików trzeba wykonać komende `python -m pip install -r requirements.txt` lub `pip install -r requirements.txt` w folderze gry,
+po czym `python main.py` lub `./main.py by włączyć grę
 
 ## Cel gry
 
