@@ -27,7 +27,7 @@ class Character(Object):
     def __init__(self, pos_x, pos_y, HP, size,game):
         super().__init__(pos_x,pos_y,size,game)
         self.hasCollision = True
-        self._pushForce = 0.5
+        self._pushForce = 0.2
         self.HP = HP
         self.speed = 5.5
         self.size = size

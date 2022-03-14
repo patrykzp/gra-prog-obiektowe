@@ -55,6 +55,7 @@ class aggroNPC(NPC):
     def __init__(self,pos_x,pos_y,HP,size,game):
         super().__init__(pos_x,pos_y,HP,size,game)
         self.setImage(pygame.image.load("bat.png"))
+        self.collisionBox = pygame.rect.Rect(0, 0, self.size[0] / 10, self.size[1] / 10)
 
     def update(self):
         plr = self.game.player
